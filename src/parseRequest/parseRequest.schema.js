@@ -43,8 +43,8 @@ const schemaContent = {
   required: ['email'],
   properties: {
     email: { type: 'string', minLength: 1, maxLength: 255 },
-    name: { type: 'string', minLength: 1, maxLength: 255 },
-    lastName: { type: 'string', minLength: 1, maxLength: 255 },
+    first_name: { type: 'string', minLength: 1, maxLength: 255 },
+    last_name: { type: 'string', minLength: 1, maxLength: 255 },
     identification: schemaIdentification,
     phone: schemaPhone,
     address: schemaAddress,
