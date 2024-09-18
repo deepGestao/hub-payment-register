@@ -14,7 +14,7 @@ const getConfig = (token) => ({
 const requestGateway = async (content) => {
   const token = await getAccessToken();
   const { data: id } = await axios.post(
-    process.env.MERCARDO_PAGO_REGISTER,
+    process.env.MERCADO_PAGO_REGISTER,
     content.content,
     getConfig(token),
   );
