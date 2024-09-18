@@ -20,7 +20,9 @@ const schemaAddress = {
     city: {
       type: 'object',
       required: ['name'],
-      name: { type: 'string', minLength: 1, maxLength: 255 },
+      properties: {
+        name: { type: 'string', minLength: 1, maxLength: 255 },
+      },
     },
   },
 };
@@ -35,7 +37,7 @@ const schemaIdentification = {
   },
 };
 
-const schema = {
+const schemaContent = {
   type: 'object',
   additionalProperties: false,
   required: ['email'],
@@ -46,6 +48,19 @@ const schema = {
     identification: schemaIdentification,
     phone: schemaPhone,
     address: schemaAddress,
+  },
+};
+
+const schema = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['id', 'origin', 'content', 'contact'],
+  properties: {
+    id: { type: 'string', minLength: 1, maxLength: 255 },
+    origin: { type: 'string', minLength: 1, maxLength: 255 },
+    contact: { type: 'string', minLength: 1, maxLength: 255 },
+    token: { type: 'string', minLength: 1, maxLength: 255 },
+    content: schemaContent,
   },
 };
 

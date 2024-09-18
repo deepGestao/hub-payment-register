@@ -15,7 +15,7 @@ const requestGateway = async (content) => {
   const token = await getAccessToken();
   const { data: id } = await axios.post(
     process.env.MERCARDO_PAGO_REGISTER,
-    content,
+    content.content,
     getConfig(token),
   );
   return id;
