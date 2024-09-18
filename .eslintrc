@@ -18,6 +18,7 @@
     "no-unused-vars": "off",
     "operator-linebreak": "off",
     "max-statements": ["error", 14],
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "import/no-extraneous-dependencies": "off"
   }
 }

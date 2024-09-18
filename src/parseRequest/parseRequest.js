@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
 import Ajv from 'ajv';
 import { schema } from './parseRequest.schema';
 
