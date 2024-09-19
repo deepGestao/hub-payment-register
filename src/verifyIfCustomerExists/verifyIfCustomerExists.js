@@ -18,7 +18,7 @@ const verifyIfCustomerExists = async (email) => {
     .promise();
   const exists = (response.Items && response.Items.length > 0);
   return {
-    token: exists ? response.Items[0].token : '',
+    token: exists ? response.Items[0].token.S : '',
     exists,
   };
 };
