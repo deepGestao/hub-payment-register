@@ -13,6 +13,7 @@ const sendDynamoDbRequest = async (content, gatewayId) => {
         contact: { S: content.contact },
         request: { S: JSON.stringify(content.content) },
         gatewayId: { S: `mercadopago|${gatewayId}` },
+        email: { S: content.content.email },
       },
     })
     .promise();
