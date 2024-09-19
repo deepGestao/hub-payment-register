@@ -12,10 +12,9 @@ const handler = async (event, context) => {
     if (validate) {
       const id = await requestGateway(content);
       await sendDynamoDbRequest(content, id);
-      console.log(id);
       return {
         statusCode: 200,
-        body: '{}',
+        body: JSON.stringify({ token: content.token }),
       };
     }
     return {
