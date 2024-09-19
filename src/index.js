@@ -2,19 +2,29 @@ import uuid4 from 'uuid4';
 import { parseRequest } from './parseRequest/parseRequest';
 import { requestGateway } from './requestGateway/requestGateway';
 import { sendDynamoDbRequest } from './sendDynamoDbRequest/sendDynamoDbRequest';
+import { verifyIfCustomerExists } from './verifyIfCustomerExists/verifyIfCustomerExists';
+
+const processItem = async (content) => {
+  const customer = await verifyIfCustomerExists(content.content.email);
+  if (!customer.exists) {
+    const id = await requestGateway(content);
+    await sendDynamoDbRequest(content, id);
+    return content.token;
+  }
+  return customer.token;
+};
 
 const handler = async (event, context) => {
   console.log(event, context);
   try {
     const content = JSON.parse(event.body);
-    content.token = content.token || uuid4();
+    content.token = uuid4();
     const validate = parseRequest(content);
     if (validate) {
-      const id = await requestGateway(content);
-      await sendDynamoDbRequest(content, id);
+      const token = await processItem(content);
       return {
         statusCode: 200,
-        body: JSON.stringify({ token: content.token }),
+        body: JSON.stringify({ token }),
       };
     }
     return {
