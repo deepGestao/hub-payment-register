@@ -14,6 +14,13 @@ const sendDynamoDbRequest = async (content, gatewayId) => {
         request: { S: JSON.stringify(content.content) },
         gatewayId: { S: `mercadopago|${gatewayId}` },
         email: { S: content.content.email },
+        zipCode: { S: `${content.content.address.zip_code}` },
+        streetName: { S: `${content.content.address.street_name}` },
+        streetNumber: { S: `${content.content.address.street_number}` },
+        name: { S: `${content.content.first_name}` },
+        lastName: { S: `${content.content.address.last_name}` },
+        document: { S: `${content.content.address.identification.number}` },
+        subscriptionId: { S: `${content.subscriptionId}` },
       },
     })
     .promise();
