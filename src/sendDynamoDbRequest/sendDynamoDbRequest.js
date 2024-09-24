@@ -18,9 +18,8 @@ const sendDynamoDbRequest = async (content, gatewayId) => {
         streetName: { S: `${content.content.address.street_name}` },
         streetNumber: { S: `${content.content.address.street_number}` },
         name: { S: `${content.content.first_name}` },
-        lastName: { S: `${content.content.address.last_name}` },
-        document: { S: `${content.content.address.identification.number}` },
-        subscriptionId: { S: `${content.subscriptionId}` },
+        lastName: { S: `${content.content.last_name}` },
+        document: { S: `${content.content.identification.number}` },
       },
     })
     .promise();
